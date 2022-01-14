@@ -1,7 +1,9 @@
 <?php
 use app\assets\NewsAsset;
-use yii\bootstrap4\html;
-use yii\bootstrap4\url;
+use yii\helpers\html;
+use yii\helpers\url;
+use app\modules\admin\models\Menu;
+use app\modules\admin\models\Bolim;
 
 NewsAsset::register($this);
 
@@ -34,9 +36,18 @@ $this->beginPage();
   </form>
   <div id="nav">
     <ul id="menu">
-      <li class="current_page_item"><a href="#">Home</a></li>
-      <li><a href="examples.html">Examples</a></li>
-      <li><a href="single.html">Single</a></li>
+      <!-- <li class="current_page_item"><a href="#">Home</a></li> -->
+        
+       <?php
+        $menu  = Menu::find()->all();
+       foreach ($menu as $mn){
+     
+        echo "<li>";
+          echo html::a($mn->name,url::to([$mn->link]));
+        echo "<li>";
+
+       }
+        ?>      
       <!-- <li><a href="#">Drop-down</a>
         <ul>
           <li><a href="#">Level 1</a></li>
@@ -53,8 +64,8 @@ $this->beginPage();
           </li>
         </ul>
       </li> -->
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">About</a></li>
+      <!-- <li><a href="#">Blog</a></li>
+      <li><a href="#">About</a></li> -->
     </ul>
     <!-- /menu -->
   </div>
@@ -69,12 +80,21 @@ $this->beginPage();
         <div class="topitem">
           <h3>Categories</h3>
           <ul id="categories">
-            <li class="cat-item"><a href="#">Culture and Community</a></li>
+          <!--   <li class="cat-item"><a href="#">Culture and Community</a></li>
             <li class="cat-item"><a href="#">Featured</a></li>
             <li class="cat-item"><a href="#">Food and Drinks</a></li>
             <li class="cat-item"><a href="#">Health and Medicine</a></li>
             <li class="cat-item"><a href="#">Politics and Relations</a></li>
-            <li class="cat-item"><a href="#">Travel and Leisure</a></li>
+            <li class="cat-item"><a href="#">Travel and Leisure</a></li> -->
+        <?php
+        $catagory  = Bolim::find()->all();
+       foreach ($catagory as $ct){
+        echo "<li class='cat-item'>";
+          echo html::a($ct->bnomi,url::to(["bolim","id"=>$ct->id]));
+        echo "<li>";
+
+       }
+        ?>  
           </ul>
           <!-- /categories -->
         </div>
