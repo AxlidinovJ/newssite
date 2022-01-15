@@ -18,6 +18,7 @@ class DefaultController extends Controller
         return $this->render('index',['news'=>$model]);
     }
 
+  
 
 public function actionAddmenu(){
     $model = new \app\modules\admin\models\Menu();

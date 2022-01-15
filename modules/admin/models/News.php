@@ -36,7 +36,8 @@ class News extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['bolim_id'], 'integer'],
             [['time'], 'safe'],
-            [['title', 'img'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255],
+            // ['img','file','extensions'=>'jpg, jpeg, bpm, png'],  
             [['bolim_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bolim::className(), 'targetAttribute' => ['bolim_id' => 'id']],
         ];
     }

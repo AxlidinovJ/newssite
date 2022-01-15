@@ -30,8 +30,8 @@ $this->beginPage();
     <h2>Just another Weblog Theme</h2>
   </div>
   <!-- /header -->
-  <form method="get" id="searchform" action="#" >
-    <input type="text" value="Search this website..."  onfocus="if (this.value == 'Search this website...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this website...';}" name="s" id="s" />
+  <form method="get" id="searchform" action="search" >
+    <input type="text" value="Search this website..."  onfocus="if (this.value == 'Search this website...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this website...';}" name="search" id="s" />
     <input type="submit" id="searchsubmit" value="Go" />
   </form>
   <div id="nav">

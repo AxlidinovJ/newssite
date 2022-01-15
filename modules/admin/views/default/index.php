@@ -1,7 +1,6 @@
 <?php
 use yii\bootstrap4\Html;
 use yii\helpers\url;
-use yii\helpers\BaseJson;
 ?>
 
 <h1><?=html::a("Menu qo'shish",url::to(['default/addmenu']));?></h1>
@@ -27,7 +26,7 @@ use yii\helpers\BaseJson;
 			Vaqti
 		</td>	
 	</tr>
-	<?php foreach ($news as $new)?>
+	<?php foreach ($news as $new){?>
 	<tr>
 		<td>
 			<?=$new->title; ?>
@@ -39,12 +38,12 @@ use yii\helpers\BaseJson;
 			<?=$new->img; ?>
 		</td>
 		<td>
-			<?=html::encode(substr($new->content,0,100)); ?>
+			<?=substr($new->content,0,100); ?>
 		</td>
 		<td>
 			<?=$new->time; ?>
 		</td>	
 	</tr>
-	<?endforeach;?>
+	<?php }?>
 
 </table>
