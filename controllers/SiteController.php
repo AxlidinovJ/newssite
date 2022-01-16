@@ -125,4 +125,19 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionRegister(){
+    $model = new \app\models\Users();
+
+    if ($model->load(Yii::$app->request->post())) {
+        if ($model->validate()) {
+            $model->save();
+            return $this->redirect('../');
+        }
+    }
+
+    return $this->render('register', [
+        'model' => $model,
+    ]);
+}
 }

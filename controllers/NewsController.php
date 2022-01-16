@@ -3,6 +3,7 @@ namespace app\controllers;
 use yii;
 use yii\web\Controller;
 use app\modules\admin\models\News;
+use yoo\filters\AccessControl;
 
 class NewsController extends Controller{
 	public $layout = "news";

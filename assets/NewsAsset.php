@@ -7,6 +7,7 @@ class NewsAsset extends AssetBundle{
 	public $css = [
 		'css/ie6.css',
 		'css/style.css',
+		'css/block.css',
 	];
 	public $js = [
 		'scripts/suckerfish.js',

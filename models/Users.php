@@ -16,7 +16,7 @@ use Yii;
  * @property string $AccessToken
  * @property string $time
  */
-class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
@@ -33,8 +33,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             [['username', 'password1', 'password2', 'yoshi'], 'required'],
-            ['username','unique'],
-                
             [['yoshi'], 'integer'],
             [['time'], 'safe'],
             [['username', 'password1', 'password2', 'AuthKey', 'AccessToken'], 'string', 'max' => 255],

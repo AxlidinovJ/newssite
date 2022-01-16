@@ -24,6 +24,9 @@ use yii\helpers\url;
 		</th>
 		<th>
 			Vaqti
+		</td>
+		<th>
+			DElET/EDIT
 		</td>	
 	</tr>
 	<?php foreach ($news as $new){?>
@@ -42,6 +45,10 @@ use yii\helpers\url;
 		</td>
 		<td>
 			<?=$new->time; ?>
+		</td>
+		<td>
+			<?=html::a("Edit",url::to(['editnews','id'=>$new->id]),['class'=>"btn btn-success block"])?>
+			<?=html::a("Del",url::to(['deletenews','id'=>$new->id]),['class'=>"btn btn-danger block"])?>
 		</td>	
 	</tr>
 	<?php }?>

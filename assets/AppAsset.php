@@ -21,6 +21,8 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/block.css',
+        
     ];
     public $js = [
     ];
@@ -28,4 +30,5 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap4\BootstrapAsset',
     ];
+    
 }

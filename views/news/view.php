@@ -10,9 +10,9 @@ use yii\helpers\Url;
             <?=$news->title?>
           </h2>
           <p>
-          <img src="<?=url::to(['../'])?>/images/featured1.jpg" alt="" width="300" height="200">
+          <!-- <img src="<?=url::to(['../'])?>/images/featured1.jpg" alt="" width="300" height="200"> -->
 
-            <?=$news->content?>
+            <?=str_replace("\n", "<br>", $news->content)?>
               
             </p>
         </div>

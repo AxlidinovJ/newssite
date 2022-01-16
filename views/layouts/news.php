@@ -4,6 +4,7 @@ use yii\helpers\html;
 use yii\helpers\url;
 use app\modules\admin\models\Menu;
 use app\modules\admin\models\Bolim;
+use app\modules\admin\models\Teg;
 
 NewsAsset::register($this);
 
@@ -39,11 +40,18 @@ $this->beginPage();
       <!-- <li class="current_page_item"><a href="#">Home</a></li> -->
         
        <?php
-        $menu  = Menu::find()->all();
+
+       if(Menu::find()->count()>0){
+      $menu  = Menu::find()->all();
        foreach ($menu as $mn){
-     
         echo "<li>";
           echo html::a($mn->name,url::to([$mn->link]));
+        echo "<li>";
+
+       }
+     }else{
+        echo "<li>";
+          echo "<h1><Menyular kiritilmagan/h1>";
         echo "<li>";
 
        }
@@ -87,12 +95,17 @@ $this->beginPage();
             <li class="cat-item"><a href="#">Politics and Relations</a></li>
             <li class="cat-item"><a href="#">Travel and Leisure</a></li> -->
         <?php
+       if(Bolim::find()->count()>0){
         $catagory  = Bolim::find()->all();
        foreach ($catagory as $ct){
         echo "<li class='cat-item'>";
           echo html::a($ct->bnomi,url::to(["bolim","id"=>$ct->id]));
         echo "<li>";
 
+       }}else{
+        echo "<li class='cat-item'>";
+          echo "Kategoryilar kiritilmagan";
+        echo "<li>";
        }
         ?>  
           </ul>
@@ -178,7 +191,15 @@ $this->beginPage();
         <!-- /flinks -->
         <div class="flinks">
           <h3>Tag Cloud</h3>
-          <a href="#" style='font-size: 14pt;'>culture</a> <a href="#" style='font-size: 10pt;'>fashion</a> <a href="#" style='font-size: 12pt;'>food</a> <a href="#" style='font-size: 12pt;'>gadget</a> <a href="#" style='font-size: 12pt;'>health</a> <a href="#" style='font-size: 10pt;'>history</a> <a href="#" style='font-size: 8pt;'>language</a> <a href="#" style='font-size: 10pt;'>philosophy</a> <a href="#" style='font-size: 14pt;'>politics</a> <a href="#" style='font-size: 10pt;'>technology</a> <a href="#" style='font-size: 16pt;'>travel</a> <a href="#" style='font-size: 22pt;'>wordpress</a> </div>
+          <?php
+          $tegs = Teg::find()->all();
+          foreach ($tegs as $teg) {
+              $options = ['style' => ['font-size' => rand(14,30)."px"]];
+
+              echo html::a($teg->tnomi." ",['search','search'=>$teg->tnomi],$options);
+          }
+          ?>
+        </div>
         <!-- /flinks -->
       </div>
       <!-- /fbar -->

@@ -11,7 +11,7 @@ use app\modules\admin\models\Bolim;
 /* @var $model app\modules\admin\models\News */
 /* @var $form ActiveForm */
 ?>
-<div class="addnews">
+<div class="editnews">
 
     <?php $form = ActiveForm::begin(); ?>
 
