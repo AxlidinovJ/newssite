@@ -8,9 +8,12 @@ include "func.php";
         <h3><?=$news[0]->bolim->bnomi?></h3>
           <?php foreach ($news as $new){?>
         <div class="spost">
-          <h2><a href="#"><?=$new->title?></a></h2>
-          <img src="<?=url::to(['../'])?>/images/featured1.jpg" alt="" width="150" height="105" border="0" />
-          <p><?=substr(noimg($new->content), 0,420);?>&#8230; <?=html::a("Davomini o'qish",url::to(['view','id'=>$new->id]));?></p>
+          <h2>
+            <?=html::a($new->title,url::to(['view','id'=>$new->id]));?>
+          </h2>
+           <?=html::img(url::to(yesimg($new->content)),['width'=>'150','height'=>'105'])?>
+          <p><?=substr(noimg($new->content), 0,320);?>&#8230; </p>
+          <?=html::a("Davomini o'qish",url::to(['view','id'=>$new->id]));?>
         </div>
         <!-- /spost -->
         <div class="spbottom"></div>

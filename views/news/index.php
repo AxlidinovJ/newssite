@@ -8,7 +8,7 @@ use app\modules\admin\models\News;
 // $model = News::findOne($news[$count-1]->id);
 if(News::find()->count()>0){
 $tezkor = News::find()->orderBy('time DESC')->where(['bolim_id'=>'1'])->all();
-$oxirgi = News::find()->orderBy('time DESC')->where("bolim_id<>2")->all();
+$uzbekiston = News::find()->orderBy('time DESC')->where("bolim_id=4")->all();
 $sport = News::find()->orderBy('time DESC')->where('bolim_id=2')->all();
 $jahon = News::find()->orderBy('time DESC')->where("bolim_id=3")->all();
 // echo "<pre>";
@@ -22,7 +22,8 @@ include "func.php";
         <h3>Tezkor yangiliklar</h3>
         <h2><?=html::a($tezkor[0]->title,url::to(['view','id'=>$tezkor[0]->id]));?></h2>
         <p class="postmeta" style="margin-bottom:2px;"><?=$tezkor[0]->time?> <!-- <a href="#">Add a Comment</a> --></p>
-        <div class="the_content"> <?=html::img(url::to(['../images/'.$tezkor[0]->img]),['width'=>'230','height'=>'165'])?>
+        <div class="the_content"> 
+        <?=html::img(url::to(yesimg($tezkor[0]->content)),['width'=>'230','height'=>'165'])?>
           <p><?php
           $content = noimg($tezkor[0]->content);  
           echo substr($content, 0,200)
@@ -32,16 +33,17 @@ include "func.php";
       </div>
       <!-- /headline -->
       <div id="featured">
-        <h3>Oxirgi habarlar</h3>
+        <h3>Uzbekiston habarlari</h3>
 
         <?php $t=1;
-        foreach ($oxirgi as $oxir) {
+        foreach ($uzbekiston as $oxir) {
         if($t==4) break;
          ?>
         <div class="spost">
           <h2><?=html::a($oxir->title,url::to(['view','id'=>$oxir->id]));?></a></h2>
-          <img src="<?=url::to(['../'])?>/images/popular1.JPG" alt="" width="95" height="80" border="0" />
-          <p><?=substr(noimg($oxir->content), 0,100);?> &#8230; <?=html::a("Davomini o'qish",url::to(['view','id'=>$oxir->id]));?></p>
+          <?=html::img(url::to(yesimg($oxir->content)),['width'=>'95','height'=>'80'])?>
+          <p><?=substr(noimg($oxir->content), 0,100);?> &#8230; </p>
+          <?=html::a("Davomini o'qish",url::to(['view','id'=>$oxir->id]));?>
         </div>
         <!-- /spost -->
         <div class="spbottom"></div>
@@ -52,17 +54,19 @@ include "func.php";
       <div id="popular">
         <h3>Sport habarlari</h3>
       
-        <?php for ($i=0; $i <3 ; $i++) { ?>
+        <?php $r=0;
+        foreach ($sport as $spo) {
+          if($r==3) break;
+         ?>
         <div class="spost">
-          <h2><?=html::a($sport[$i]->title,url::to(['view','id'=>$sport[$i]->id]));?></a></h2>
-          <img src="<?=url::to(['../'])?>/images/popular1.JPG" alt="" width="95" height="80" border="0" />
-          <p><?php
-           echo substr(noimg($sport[$i]->content), 0,130);
-        ?> &#8230; <?=html::a("Davomini o'qish",url::to(['view','id'=>$sport[$i]->id]));?></p>
+          <h2><?=html::a($spo->title,url::to(['view','id'=>$spo->id]));?></a></h2>
+          <?=html::img(url::to(yesimg($spo->content)),['width'=>'95','height'=>'80'])?>
+          <p><?php echo substr(noimg($spo->content), 0,130);?> &#8230; </p>
+          <?=html::a("Davomini o'qish",url::to(['view','id'=>$spo->id]));?>
         </div>
         <!-- /spost -->
         <div class="spbottom"></div>
-        <?php }?>
+        <?php $r++;}?>
       </div>
       <!-- /popular -->
       <div id="latest">
@@ -74,9 +78,9 @@ include "func.php";
         ?>
         <div class="spost">
           <h2><?=html::a($jah->title,url::to(['view','id'=>$jah->id]));?></h2>
-          <img src="<?=url::to(['../'])?>/images/featured1.jpg" alt="" width="150" height="105" border="0" />
-          <p><?=substr(noimg($jah->content), 0,500)?>
-           &#8230; <?=html::a("Davomini o'qish",url::to(['view','id'=>$jah->id]));?></p>
+          <?=html::img(url::to(yesimg($jah->content)),['width'=>'150','height'=>'105'])?>
+          <p><?=substr(noimg($jah->content), 0,320)?> &#8230; </p>
+           <?=html::a("Davomini o'qish",url::to(['viqew','id'=>$jah->id]));?>
         </div>  
         <!-- /spost -->
         <div class="spbottom"></div>

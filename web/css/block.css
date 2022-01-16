@@ -3,3 +3,8 @@
 	width: 100px;
 	justify-content: center;
 }
+
+.lefttt{
+	display: flex;
+	justify-content: right;
+}

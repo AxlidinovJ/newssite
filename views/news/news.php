@@ -10,7 +10,8 @@ include "func.php";
         <div class="spost">
           <h2><a href="#"><?=$new->title?></a></h2>
           <img src="<?=url::to(['../'])?>/images/featured1.jpg" alt="" width="150" height="105" border="0" />
-          <p><?=substr(noimg($new->content), 0,420);?>&#8230; <?=html::a("Davomini o'qish",url::to(['view','id'=>$new->id]));?></p>
+          <p><?=substr(noimg($new->content), 0,400);?>&#8230; </p>
+          <?=html::a("Davomini o'qish",url::to(['view','id'=>$new->id]));?>
         </div>
         <!-- /spost -->
         <div class="spbottom"></div>

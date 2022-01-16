@@ -19,7 +19,7 @@ class NewsController extends Controller{
 
 
 	 public function actionBolim($id){
-    	$model = News::find()->where(["bolim_id"=>$id])->all();
+    	$model = News::find()->where(["bolim_id"=>$id])->orderBy('time DESC')->all();
         return $this->render('bolim',['news'=>$model]);
     }
 
