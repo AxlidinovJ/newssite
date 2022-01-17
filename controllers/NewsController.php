@@ -3,32 +3,12 @@ namespace app\controllers;
 use yii;
 use yii\web\Controller;
 use app\modules\admin\models\News;
-use yii\filters\AccessControl;
 use yii\data\Pagination;
 class NewsController extends Controller{
 	public $layout = "news";
 	public function actionIndex(){
 		return $this->render("index");
 	}
-
-
-public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['news'],
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => ['news'],
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-        ];
-    }
-
 
  public function actionNews(){
     	$model = News::find()->orderBy('time DESC');

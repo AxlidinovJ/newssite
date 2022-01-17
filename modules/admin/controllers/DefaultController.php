@@ -9,13 +9,12 @@ use yii\filters\AccessControl;
 use app\modules\admin\models\Menu;
 use app\modules\admin\models\Bolim;
 use app\modules\admin\models\News;
-
 /**
  * Default controller for the `admin` module
  */
 class DefaultController extends Controller
 {
-    // public $layout = "news";
+    public $layout = "news";
     
 
 public function behaviors()

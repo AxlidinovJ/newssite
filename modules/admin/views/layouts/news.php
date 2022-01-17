@@ -1,7 +1,10 @@
 <?php
 use app\assets\NewsAsset;
-use yii\bootstrap4\html;
-use yii\bootstrap4\url;
+use yii\helpers\html;
+use yii\helpers\url;
+use app\modules\admin\models\Menu;
+use app\modules\admin\models\Bolim;
+use app\modules\admin\models\Teg;
 
 NewsAsset::register($this);
 
@@ -28,15 +31,31 @@ $this->beginPage();
     <h2>Just another Weblog Theme</h2>
   </div>
   <!-- /header -->
-  <form method="get" id="searchform" action="#" >
-    <input type="text" value="Search this website..."  onfocus="if (this.value == 'Search this website...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this website...';}" name="s" id="s" />
+  <form method="get" id="searchform" action="search" >
+    <input type="text" value="Search this website..."  onfocus="if (this.value == 'Search this website...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this website...';}" name="search" id="s" />
     <input type="submit" id="searchsubmit" value="Go" />
   </form>
   <div id="nav">
     <ul id="menu">
-      <li class="current_page_item"><a href="#">Home</a></li>
-      <li><a href="examples.html">Examples</a></li>
-      <li><a href="single.html">Single</a></li>
+      <!-- <li class="current_page_item"><a href="#">Home</a></li> -->
+        
+       <?php
+
+       if(Menu::find()->count()>0){
+      $menu  = Menu::find()->all();
+       foreach ($menu as $mn){
+        echo "<li>";
+          echo html::a($mn->name,url::to("news/".$mn->link));
+        echo "<li>";
+
+       }
+     }else{
+        echo "<li>";
+          echo "<h1><Menyular kiritilmagan/h1>";
+        echo "<li>";
+
+       }
+        ?>      
       <!-- <li><a href="#">Drop-down</a>
         <ul>
           <li><a href="#">Level 1</a></li>
@@ -53,15 +72,15 @@ $this->beginPage();
           </li>
         </ul>
       </li> -->
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">About</a></li>
+      <!-- <li><a href="#">Blog</a></li>
+      <li><a href="#">About</a></li> -->
     </ul>
     <!-- /menu -->
   </div>
   <!-- /nav -->
   <div id="content">
-    <div id="center">
-    	<?=$content?>
+    <div id="center" align="center">
+      <?=$content?>
     </div>
     <!-- /center -->
     <div id="sidebar">
@@ -69,12 +88,26 @@ $this->beginPage();
         <div class="topitem">
           <h3>Categories</h3>
           <ul id="categories">
-            <li class="cat-item"><a href="#">Culture and Community</a></li>
+          <!--   <li class="cat-item"><a href="#">Culture and Community</a></li>
             <li class="cat-item"><a href="#">Featured</a></li>
             <li class="cat-item"><a href="#">Food and Drinks</a></li>
             <li class="cat-item"><a href="#">Health and Medicine</a></li>
             <li class="cat-item"><a href="#">Politics and Relations</a></li>
-            <li class="cat-item"><a href="#">Travel and Leisure</a></li>
+            <li class="cat-item"><a href="#">Travel and Leisure</a></li> -->
+        <?php
+       if(Bolim::find()->count()>0){
+        $catagory  = Bolim::find()->all();
+       foreach ($catagory as $ct){
+        echo "<li class='cat-item'>";
+          echo html::a($ct->bnomi,url::to(["bolim","id"=>$ct->id]));
+        echo "<li>";
+
+       }}else{
+        echo "<li class='cat-item'>";
+          echo "Kategoryilar kiritilmagan";
+        echo "<li>";
+       }
+        ?>  
           </ul>
           <!-- /categories -->
         </div>
@@ -158,7 +191,15 @@ $this->beginPage();
         <!-- /flinks -->
         <div class="flinks">
           <h3>Tag Cloud</h3>
-          <a href="#" style='font-size: 14pt;'>culture</a> <a href="#" style='font-size: 10pt;'>fashion</a> <a href="#" style='font-size: 12pt;'>food</a> <a href="#" style='font-size: 12pt;'>gadget</a> <a href="#" style='font-size: 12pt;'>health</a> <a href="#" style='font-size: 10pt;'>history</a> <a href="#" style='font-size: 8pt;'>language</a> <a href="#" style='font-size: 10pt;'>philosophy</a> <a href="#" style='font-size: 14pt;'>politics</a> <a href="#" style='font-size: 10pt;'>technology</a> <a href="#" style='font-size: 16pt;'>travel</a> <a href="#" style='font-size: 22pt;'>wordpress</a> </div>
+          <?php
+          $tegs = Teg::find()->all();
+          foreach ($tegs as $teg) {
+              $options = ['style' => ['font-size' => rand(14,30)."px"]];
+
+              echo html::a($teg->tnomi." ",['search','search'=>$teg->tnomi],$options);
+          }
+          ?>
+        </div>
         <!-- /flinks -->
       </div>
       <!-- /fbar -->

@@ -16,7 +16,7 @@ use app\modules\admin\models\Bolim;
     <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'title') ?>
-        <!-- <?= $form->field($model, 'img');//->fileInput(['multiple'=>true]); ?> -->
+        
         <?php
 
 
