@@ -8,3 +8,14 @@
 	display: flex;
 	justify-content: right;
 }
+.active{
+	font-size: 14px;
+	font-weight: 700;
+	color: white;
+}
+.navigation{
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+	list-style: none;
+}

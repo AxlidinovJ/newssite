@@ -20,3 +20,10 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div><!-- addbolim -->
+<?php
+foreach ($bolim as $key) {
+    echo "<li>";
+        echo $key->bnomi." <=> ". $key->time;
+    echo "</li>";
+}
+?>

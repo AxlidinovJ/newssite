@@ -127,7 +127,7 @@ class SiteController extends Controller
     }
 
     public function actionRegister(){
-    $model = new \app\models\Users();
+    $model = new \app\models\User();
 
     if ($model->load(Yii::$app->request->post())) {
         if ($model->validate()) {

@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
+include "func.php";
 ?>
 
       <!-- /popular -->
@@ -11,8 +12,8 @@ use yii\helpers\Url;
         foreach ($searchs as $search) { ?>
         <div class="spost">	
           <h2><?=html::a($search->title,url::to(['view','id'=>$search->id]));?></h2>
-          <img src="<?=url::to(['../'])?>/images/featured1.jpg" alt="" width="150" height="105" border="0" />
-          <p><?=substr($search->content, 0,500)?>
+          <?=html::img(url::to(yesimg($search->content)),['width'=>'150','height'=>'105'])?>
+          <p><?=substr(noimg($search->content), 0,300)?>
            &#8230; <?=html::a("Davomini o'qish",url::to(['view','id'=>$search->id]));?></p>
         </div>  
         <!-- /spost -->

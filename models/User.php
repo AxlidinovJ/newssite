@@ -34,7 +34,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
             [['username', 'password1', 'password2', 'yoshi'], 'required'],
             ['username','unique'],
-                
             [['yoshi'], 'integer'],
             [['time'], 'safe'],
             [['username', 'password1', 'password2', 'AuthKey', 'AccessToken'], 'string', 'max' => 255],
@@ -58,6 +57,11 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         ];
     }
     
+
+
+
+
+
   public static function findIdentity($id)
     {
         return static::findOne($id);

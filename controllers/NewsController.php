@@ -3,8 +3,8 @@ namespace app\controllers;
 use yii;
 use yii\web\Controller;
 use app\modules\admin\models\News;
-use yoo\filters\AccessControl;
-
+use yii\filters\AccessControl;
+use yii\data\Pagination;
 class NewsController extends Controller{
 	public $layout = "news";
 	public function actionIndex(){
@@ -12,9 +12,32 @@ class NewsController extends Controller{
 	}
 
 
+public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['news'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['news'],
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+
  public function actionNews(){
-    	$model = News::find()->orderBy('time DESC')->all();
-     	return $this->render('news',['news'=>$model]);
+    	$model = News::find()->orderBy('time DESC');
+        $page = new Pagination([
+            'totalCount'=>$model->count(),
+            'defaultPageSize'=>2,
+        ]);
+        $models = $model->offset($page->offset)->limit($page->limit)->all();
+     	return $this->render('news',['news'=>$models,'pages'=>$page]);
   }
 
 

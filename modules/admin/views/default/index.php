@@ -1,6 +1,7 @@
 <?php
 use yii\bootstrap4\Html;
 use yii\helpers\url;
+include 'func.php';
 ?>
 
 <h1><?=html::a("Menu qo'shish",url::to(['default/addmenu']));?></h1>
@@ -38,10 +39,10 @@ use yii\helpers\url;
 			<?=$new->bolim->bnomi; ?>
 		</td>
 		<td>
-			<?=$new->img; ?>
+			<?=html::img(yesimg($new->content),['width'=>100])?>
 		</td>
 		<td>
-			<?=substr($new->content,0,100); ?>
+			<?=substr(noimg($new->content),0,100); ?>
 		</td>
 		<td>
 			<?=$new->time; ?>

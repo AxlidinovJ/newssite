@@ -6,6 +6,7 @@ use yii\bootstrap4\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Menu */
 /* @var $form ActiveForm */
+
 ?>
 <div class="addmenu">
 
@@ -20,3 +21,11 @@ use yii\bootstrap4\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div><!-- addmenu -->
+
+<?php
+foreach ($menu as $key) {
+    echo "<li>";
+        echo $key->name. " <=> ". $key->link. " <=> ". $key->time;
+    echo "</li>";
+}
+?>
